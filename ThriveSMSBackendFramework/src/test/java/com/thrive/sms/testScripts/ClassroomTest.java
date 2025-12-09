@@ -32,6 +32,7 @@ public class ClassroomTest {
 				.post("http://49.249.28.218:8081/AppServer/Student_Management_System/view/login.php/admin/classroom");
 				resp.then()
 				.assertThat().statusCode(201)
+				.assertThat().contentType(ContentType.JSON)
 				.assertThat().time(Matchers.lessThan(1200L))
 				.log().all();
 
@@ -48,10 +49,11 @@ public class ClassroomTest {
 		
 		Response resp = given()
 				.auth().oauth2(token)
-				.when()
+ 				.when()
 				.get("http://49.249.28.218:8081/AppServer/Student_Management_System/view/login.php/admin/classroom/classroomId");
 				resp.then()
-				.assertThat().statusCode(201)
+				.assertThat().statusCode(200)
+				.contentType(ContentType.JSON)
 				.assertThat().time(Matchers.lessThan(800L))
 				.log().all();
 
@@ -61,7 +63,6 @@ public class ClassroomTest {
 				
 				Assert.assertEquals(classroomName, actClassrommId);
 				Assert.assertEquals(actStudentCount, studentCount);
-		
 	}
 	
 	@Test(dependsOnMethods = "createClassroomTest()")
@@ -77,6 +78,7 @@ public class ClassroomTest {
 				.patch("http://49.249.28.218:8081/AppServer/Student_Management_System/view/login.php/admin/classroom/classroomId");
 				resp.then()
 				.assertThat().statusCode(200)
+				.contentType(ContentType.JSON)
 				.assertThat().time(Matchers.lessThan(800L))
 				.log().all();
 
@@ -100,13 +102,4 @@ public class ClassroomTest {
 				.log().all();
 	}
 }
-
-
-
-
-
-
-
-
-
 

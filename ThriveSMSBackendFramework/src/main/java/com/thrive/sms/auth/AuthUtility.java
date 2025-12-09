@@ -1,4 +1,4 @@
-package com.thrive.sms.auth;
+ package com.thrive.sms.auth;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -16,7 +16,7 @@ public class AuthUtility {
             .when()
                 .post("https://your-auth-server.com/oauth/token");
 
-        return res.jsonPath().getString("access_token");
+        return res.jsonPath().get("access_token");
     }
 }
 
